@@ -4,3 +4,9 @@ numpy>=1.23.0
 
 # Biblioteca para leitura de arquivos Excel
 openpyxl>=3.1.0
+
+# Bibliotecas para visualização de dados
+matplotlib>=3.6.0
+
+# Bibliotecas para machine learning e estatística (caso queira usar)
+scikit-learn>=1.2.0
