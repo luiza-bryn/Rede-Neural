@@ -1,0 +1,42 @@
+Data description
+
+DogInfo.csv
+- Information about the dogs in a comma separated text file with six columns.
+
+Column name  	    Description
+--------------------------------
+DogID	            Number of individual dogs
+Breed	            Breed of the dog
+Weight	            Weight of the dog
+Age months          Age of the dog in months
+Gender	            Gender of the dog: 1 = female, 2 = male
+Neutering Status    Neutering Status of the dog: 0 = non-neutered, 1 = neutered
+
+################
+Measurement data in text file
+
+DogMoveData.csv
+- Contains all the data 10611068 rows, 20 columns.
+
+Column name  	    Description
+--------------------------------
+DogID               Number ID of the dog
+TestNum             Number of the test {1, 2}
+t_sec               Time from the start of the test in seconds
+ABack_x             Accelerometer measurement from the sensor in the back, x-axis
+ABack_y             Accelerometer measurement from the sensor in the back, y-axis     
+ABack_z             Accelerometer measurement from the sensor in the back, z-axis     
+ANeck_y             Accelerometer measurement from the sensor in the neck, x-axis
+ANeck_x             Accelerometer measurement from the sensor in the neck, y-axis
+ANeck_z             Accelerometer measurement from the sensor in the neck, z-axis
+GBack_x             Gyroscope measurement from the sensor in the back, x-axis
+GBack_y             Gyroscope measurement from the sensor in the back, y-axis
+GBack_z             Gyroscope measurement from the sensor in the back, z-axis
+GNeck_x             Gyroscope measurement from the sensor in the neck, x-axis
+GNeck_y             Gyroscope measurement from the sensor in the neck, y-axis
+GNeck_z             Gyroscope measurement from the sensor in the neck, z-axis
+Task                The task given at the time, <undefined> when no task is being performed
+Behavior_1          Annotated behavior 1, maximum of three simultaneous annotations at the same time
+Behavior_2          Annotated behavior 2, maximum of three simultaneous annotations at the same time
+Behavior_3          Annotated behavior 3, maximum of three simultaneous annotations at the same time
+PointEvent          Short events annotated separately, Bark for example.

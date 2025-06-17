@@ -2,7 +2,7 @@
 
 **Integrantes:**
 - Luiza Bryn Marangoni Guimarães (21200421)  
-- Yuri ()  
+- Yuri Rodrigues de Souza (21202346)  
 - Filipe Ribeiro Rocha (19203808)
 
 ---
