@@ -37,3 +37,11 @@ def categorical_cross_entropy_derivative(y_true, y_pred):
     epsilon = 1e-15
     y_pred = np.clip(y_pred, epsilon, 1 - epsilon)
     cce_derivative = -(y_true / y_pred) / y_true.shape[0]
+    return cce_derivative
+
+# Dicionario de mapeamento dos nomes
+loss_funcions = {
+    'mse': (mean_squared_error, mean_squared_error_derivative),
+    'binary_croosentropy': (binary_cross_entropy,binary_cross_entropy_derivative),
+    'categorical_crossentropy': (categorical_cross_entropy, categorical_cross_entropy_derivative)
+}
