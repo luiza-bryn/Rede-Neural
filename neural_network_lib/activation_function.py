@@ -53,3 +53,11 @@ def softmax_derivative(x):
     return x_dir
 
 # caso utilize a softmax com o categorical cross entropy o gradiente fica: gradiente = y_pred - y_true
+
+activation_funcions = {
+    'sigmoid': (logistic, logistic_derivative),
+    'tanh': (tanh, tanh_derivative),
+    'identity': (identity, identity_derivative),
+    'relu': (relu, relu_derivative),
+    'softmax': (softmax, softmax_derivative)
+}
