@@ -40,7 +40,7 @@ def categorical_cross_entropy_derivative(y_true, y_pred):
     return cce_derivative
 
 # Dicionario de mapeamento dos nomes
-loss_funcions = {
+loss_functions = {
     'mse': (mean_squared_error, mean_squared_error_derivative),
     'binary_croosentropy': (binary_cross_entropy,binary_cross_entropy_derivative),
     'categorical_crossentropy': (categorical_cross_entropy, categorical_cross_entropy_derivative)
