@@ -6,7 +6,8 @@ def  mean_squared_error(y_true, y_pred):
     return mse
 
 def mean_squared_error_derivative(y_true, y_pred):
-    mse_drivative = 2*(y_true - y_pred) / y_true.size
+    num_samples = y_true.shape[0]
+    mse_drivative = -2*(y_true - y_pred) /  num_samples
     return mse_drivative
 
 # Entropia Cruzada Binaria

@@ -6,7 +6,8 @@ def logistic(x):
     return sigmoid
 
 def logistic_derivative(x):
-    sigmoid_derivative = logistic(x) *(1 - logistic(x))
+    sig = logistic(x)
+    sigmoid_derivative = sig *(1 - sig)
     return sigmoid_derivative
 
 # Funcao Tangente Hiperbolica
