@@ -8,7 +8,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.neural_network import MLPRegressor
 
 # 1. Carregar dados
-df = pd.read_csv('neural_network_lib/house_price_regression_dataset.csv')  # ex: 'houses.csv'
+df = pd.read_csv('../datasets/house_price_regression_dataset.csv')  # ex: 'houses.csv'
 
 # 2. Separar variáveis
 X = df.drop('House_Price', axis=1).values

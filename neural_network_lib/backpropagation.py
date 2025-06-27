@@ -23,34 +23,26 @@ def forward_phase(inputs: np.ndarray,
 
     return linear_combinations, activations
 
-def backward_phase(X: np.ndarray, 
-                         y: np.ndarray, 
-                         weights: List[np.ndarray], 
-                         biases: List[np.ndarray], 
-                         activation_functions: List[Callable], 
-                         activation_functions_derivatives: List[Callable],
-                         loss_derivative: Callable,
-                         num_layers: int,
-                         learning_rate: float = 0.01) -> Tuple[List[np.ndarray], List[np.ndarray]]:
+def backward_phase(y: np.ndarray,
+                weights: List[np.ndarray],
+                biases: List[np.ndarray],
+                linear_combinations: List[np.ndarray],
+                activations: List[np.ndarray],
+                activation_functions_derivatives: List[Callable],
+                loss_derivative: Callable,
+                num_layers: int,
+                learning_rate: float = 0.01) -> Tuple[List[np.ndarray], List[np.ndarray]]:
     """
     Executa a fase backward retornando os pesos e biases atualizados.
     """
-    num_samples = X.shape[0]
-
-    linear_combinations, activations = forward_phase(X, weights, biases, activation_functions)
+    num_samples = activations[0].shape[0]
     
     # inicializa os gradientes dos pesos e biases
     weight_gradients = [np.zeros_like(w) for w in weights]
     bias_gradients = [np.zeros_like(b) for b in biases]
 
-    # calcula o erro da camada de saida
-    # Detecta se a saida é softmax + entropia cruzada
-    if activation_functions[-1].__name__ == 'softmax' and loss_derivative.__name__ == 'categorical_cross_entropy_derivative':
-        error_signal = activations[-1] - y
+    error_signal = loss_derivative(y, activations[-1]) * activation_functions_derivatives[-1](linear_combinations[-1])
 
-    else:
-        error_signal  = loss_derivative(y, activations[-1]) * activation_functions_derivatives[-1](linear_combinations[-1])
-    
     # fase de retropropagacao
     for layer_idx in reversed(range(num_layers)):
         # calcula os gradientes dos pesos e biases
@@ -58,7 +50,7 @@ def backward_phase(X: np.ndarray,
         bias_gradients[layer_idx] = np.sum(error_signal , axis=0) / num_samples
         
         if layer_idx > 0:
-            error_signal  = np.dot(error_signal , weights[layer_idx].T) * activation_functions_derivatives[layer_idx](linear_combinations[layer_idx - 1])
+            error_signal  = np.dot(error_signal , weights[layer_idx].T) * activation_functions_derivatives[layer_idx - 1](linear_combinations[layer_idx - 1])
 
     # atualiza os pesos e vieses
     for i in range(len(weights)):

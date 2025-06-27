@@ -9,11 +9,11 @@ X = np.array([[0, 0],
 
 y = np.array([[0], [1], [1], [0]])
 
-redeneural = NeuralNetwork(hidden_layers=(8,16), activation=['sigmoid', 'identity'], 
-                           loss='mse', 
-                           model_type='classification',
+redeneural = NeuralNetwork(hidden_layers=(4,), hidden_activation=['relu'], 
+                           loss='bce', 
+                           model_type='binary',
                            learning_rate=0.01,
-                           max_iter=100000)
+                           max_iter=10000)
 
 redeneural.fit(X, y)
 predictions = redeneural.predict(X)
