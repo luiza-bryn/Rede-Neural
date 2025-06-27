@@ -41,7 +41,10 @@ def backward_phase(y: np.ndarray,
     weight_gradients = [np.zeros_like(w) for w in weights]
     bias_gradients = [np.zeros_like(b) for b in biases]
 
-    error_signal = loss_derivative(y, activations[-1]) * activation_functions_derivatives[-1](linear_combinations[-1])
+    if activation_functions_derivatives[-1].__name__ == 'softmax_derivative' and loss_derivative.__name__ == 'categorical_cross_entropy_derivative':
+        error_signal = activations[-1] - y
+    else:
+        error_signal = loss_derivative(y, activations[-1]) * activation_functions_derivatives[-1](linear_combinations[-1])
 
     # fase de retropropagacao
     for layer_idx in reversed(range(num_layers)):

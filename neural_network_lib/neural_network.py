@@ -59,6 +59,12 @@ class NeuralNetwork:
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
         _, n_features = X.shape
 
+        # Ajuste para multiclasse
+        if self.model_type == 'multiclass' and y.ndim == 1:
+            num_classes = len(np.unique(y))
+            y = np.eye(num_classes)[y]
+            self.num_classes = num_classes
+
         if self.model_type == 'binary':
             output_activation_name = 'sigmoid'
         elif self.model_type == 'regression':
@@ -102,7 +108,7 @@ class NeuralNetwork:
             # Condicao de parada
             if self.tolerance and epoch > 1 and loss_value < self.tolerance:
                 break
-
+               
             # Backward pass
             self.weights, self.biases = backward_phase(
                 y, self.weights, self.biases, 
