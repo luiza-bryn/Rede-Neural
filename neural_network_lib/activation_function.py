@@ -21,12 +21,10 @@ def tanh_derivative(x):
 
 # Funcao Identidade
 def identity(x):
-    identity_function = x
-    return identity_function
+    return x
 
 def identity_derivative(x):
-    identity_function_derivaitive = 1
-    return identity_function_derivaitive
+    return np.ones_like(x)
 
 # Unidade Linear Retificada (ReLU)
 def relu(x):
@@ -34,11 +32,7 @@ def relu(x):
     return relu_function
 
 def relu_derivative(x):
-    if x >= 0:
-        relu_function_derivative = 1
-    if x <0:
-        relu_function_derivative = 0
-    return relu_function_derivative
+    return np.where(x > 0, 1, 0)
 
 # Funcao softmax
 def softmax(x):
