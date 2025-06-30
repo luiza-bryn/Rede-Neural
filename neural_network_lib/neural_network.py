@@ -73,7 +73,8 @@ class NeuralNetwork:
             output_activation_name = 'softmax'
 
         # Definicao da estrutura de rede - camadas ocultas e camada de saida
-        layer_sizes = [n_features] + list(self.hidden_layers) + [y.shape[1]]
+        output_size = y.shape[1] if y.ndim > 1 else 1
+        layer_sizes = [n_features] + list(self.hidden_layers) + [output_size]
 
         all_activation_names = self.activation_names + [output_activation_name]
 
