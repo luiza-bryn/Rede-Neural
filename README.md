@@ -42,10 +42,10 @@ A implementação consiste em um modelo de rede neural desenvolvido para tarefas
     - [`nn_regrassion_validation`](models/validation/nn_regression_validation.ipynb)
 
 - `neural_network_lib/`
-  - `neural_network.py` Arquivo Python contendo a implementação da biblioteca de rede neural desenvolvida. Inclui a classe e métodos necessários para a construção e treinamento.
-  - `backpropagation.py` Arquivo Python responsável pela implementação do algoritmo de retropropagação.
-  - `activation_function.py` Arquivo Python que define as funções de ativação utilizadas na rede neural.
-  - `loss.py` Arquivo Python responsável pela implementação das funções de cálculo de perda.
+  - [`neural_network.py`](neural_network_lib/neural_network.py) Arquivo Python contendo a implementação da biblioteca de rede neural desenvolvida. Inclui a classe e métodos necessários para a construção e treinamento.
+  - [`backpropagation.py`](neural_network_lib/backpropagation.py) Arquivo Python responsável pela implementação do algoritmo de retropropagação.
+  - [`activation_function.py`](neural_network_lib/activation_function.py) Arquivo Python que define as funções de ativação utilizadas na rede neural.
+  - [`loss.py`](neural_network_lib/loss.py) Arquivo Python responsável pela implementação das funções de cálculo de perda.
 
 ---
 
@@ -56,4 +56,63 @@ A implementação consiste em um modelo de rede neural desenvolvido para tarefas
   ```bash
   python -m venv venv
   source venv/bin/activate  # ou venv\Scripts\activate no Windows
+  ```
+- Instale as dependências:
+  ```bash
+  pip install -r requirements.txt
+  ```
 
+## Instruções de uso
+
+  - Importação do modulo:
+  ```python
+  from neural_network_lib.neural_network import NeuralNetwork
+  ```
+
+  - Criação e treinamento:
+  ```python
+  model = NeuralNetwork(
+      hidden_layers=(4, 4)
+      hidden_activation=['relu', 'relu']
+      loss='bce'
+      model_type='binary'
+      learning_rate=0.01
+      max_iter=100000
+      random_state=42
+  )
+
+  model.fit(X_train, y_train)
+
+  pred = model.predict(X_test)
+  ```
+
+  ### Parâmetros do construtor
+  #### `NeuralNetwork()`
+  | Parâmetro         | Tipo            | Exemplo  | Descrição                                                                                      
+  |-------------------|-----------------|----------|--------------------------------------------------------------------------------------------------
+  | hidden_layers     | Tuple[int, ...] | (4, )    | Tamanho de cada camada oculta                                                                    
+  | hidden_activation | List[str]       | ['relu'] | Função de ativação para cada camada oculta.<br> Podendo ser: `sigmoid`, `tahn`, `identity`, `relu` e `softmax` 
+  | loss              | str             | 'bce'    | Função de perda. Podendo ser: `mse`, `bce` ou `cce`                                                    
+  | model_type        | str             | 'binary' | Tipo do problema. Podendo ser: `binary`, `regression` ou `multiclass`                                  
+  | learning_rate     | float           | 0.01     | Taxa de aprendizado                                                                              
+  | max_iter          | int             | 100000   | Número maximo de iterações/epocas                                                                
+  | random_state      | int             | 42       | seed para reprodutibilidade                                                                      
+  
+ 
+  ### Parâmetros dos metodos
+  #### `fit(X, y)`
+  | Parâmetro | tipo       | Formato                 | Descrição                                                    |
+  |-----------|------------|-------------------------|--------------------------------------------------------------|
+  | X         | np.ndarray | (n_amostas, n_features) | Array N-dimensional com as amostas                           |
+  | y         | np.ndarray | (n_amostras,)           | Array N-dimensional contendo somente os rótulos das amostras |
+
+  #### `predict(X)`
+  | Parâmetro | Tipo       | Formato                  | Descrição                                            |
+  |-----------|------------|--------------------------|------------------------------------------------------|
+  | X         | np.ndarray | (n_amostras, n_features) | Array N-dimensional com as amostras a serem preditas |
+
+
+  ### Saída
+  | Retorno | Tipo       | Descrição                                                           |
+  |---------|------------|---------------------------------------------------------------------|
+  | output  | np.ndarray | Saída predita pelo modelo. Podendo variar entre o tipo do problema <br> `Classificação binária`: vetor com valores 0 ou 1. <br> `Regressão`: vetor com valores contínuos. <br> `Classificação multiclasse`: vetor com o índice da classe prevista. |
